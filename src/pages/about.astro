@@ -2,24 +2,27 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 import ContactCTA from '../components/ContactCTA.astro';
-import Hero from '../components/Hero.astro';
+import { contentfulClient } from '../lib/contentful';
+
+export interface ImageContent {
+	image: any,
+}
+
+const headerImageContents = await contentfulClient.getEntries<ImageContent>({
+  content_type: "image",
+});
+const headerImageContent = headerImageContents.items[0];
 ---
 
-<BaseLayout title="About | Jeanine White" description="About Jeanine White Lorem Ipsum">
+<BaseLayout title="Background | Matthew Phillips" description="Background of Matthew Phillips">
 	<div class="stack gap-20">
 		<main class="wrapper about">
-			<Hero
-				title="About"
-				tagline="Thanks for stopping by. Read below to learn more about myself and my background."
-			>
-				<img
-					width="1553"
-					height="873"
-					src="/assets/at-work.jpg"
-					alt="Jeanine White at work with a colleague"
-				/>
-			</Hero>
-
+			<img
+				width="1553"
+				height="873"
+				src={headerImageContent?.fields.image.fields?.file?.url}
+				alt="Matthew Phillips at home"
+			/>
 			<section>
 				<h2 class="section-title">Background</h2>
 				<div class="content">
@@ -70,7 +73,6 @@ import Hero from '../components/Hero.astro';
 
 	img {
 		margin-top: 1.5rem;
-		border-radius: 1.5rem;
 		box-shadow: var(--shadow-md);
 	}
 

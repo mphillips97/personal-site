@@ -1,30 +1,29 @@
 ---
 import Icon, { Props as IconProps } from './Icon.astro';
-import ThemeToggle from './ThemeToggle.astro';
 
 /** Main menu items */
 const textLinks: { label: string; href: string }[] = [
 	{ label: 'Home', href: '/' },
-	{ label: 'Work', href: '/work/' },
-	{ label: 'About', href: '/about/' },
+	{ label: 'Purposes', href: '/work/' },
+	{ label: 'Background', href: '/about/' },
 ];
 
 /** Icon links to social media — edit these with links to your profiles! */
 const iconLinks: { label: string; href: string; icon: IconProps['icon'] }[] = [
-	{ label: 'Twitter', href: 'https://twitter.com/me', icon: 'twitter-logo' },
-	{ label: 'Twitch', href: 'https://twitch.tv/me', icon: 'twitch-logo' },
-	{ label: 'GitHub', href: 'https://github.com/me', icon: 'github-logo' },
-	{ label: 'CodePen', href: 'https://codepen.io/me', icon: 'codepen-logo' },
-	{ label: 'dribbble', href: 'https://dribbble.com/me', icon: 'dribbble-logo' },
-	{ label: 'YouTube', href: 'https://www.youtube.com/@me/', icon: 'youtube-logo' },
+	// { label: 'Twitter', href: 'https://twitter.com/me', icon: 'twitter-logo' },
+	// { label: 'Twitch', href: 'https://twitch.tv/me', icon: 'twitch-logo' },
+	// { label: 'GitHub', href: 'https://github.com/me', icon: 'github-logo' },
+	// { label: 'CodePen', href: 'https://codepen.io/me', icon: 'codepen-logo' },
+	// { label: 'dribbble', href: 'https://dribbble.com/me', icon: 'dribbble-logo' },
+	// { label: 'YouTube', href: 'https://www.youtube.com/@me/', icon: 'youtube-logo' },
 ];
 ---
 
 <nav>
 	<div class="menu-header">
 		<a href="/" class="site-title">
-			<Icon icon="terminal-window" color="var(--accent-regular)" size="1.6em" gradient />
-			Jeanine White
+			<Icon icon="heart" color="var(--accent-regular)" size="2em" gradient />
+			Matthew Phillips
 		</a>
 		<menu-button>
 			<template>
@@ -68,10 +67,6 @@ const iconLinks: { label: string; href: string; icon: IconProps['icon'] }[] = [
 						</a>
 					))
 				}
-			</div>
-
-			<div class="theme-toggle">
-				<ThemeToggle />
 			</div>
 		</div>
 	</div>
@@ -117,7 +112,7 @@ const iconLinks: { label: string; href: string; icon: IconProps['icon'] }[] = [
 		z-index: 9999;
 		position: relative;
 		font-family: var(--font-brand);
-		font-weight: 500;
+		font-weight: 1000;
 		margin-bottom: 3.5rem;
 	}
 
@@ -182,7 +177,7 @@ const iconLinks: { label: string; href: string; icon: IconProps['icon'] }[] = [
 		font-size: var(--text-md);
 		line-height: 1.2;
 		list-style: none;
-		padding: 2rem;
+		padding: 3rem;
 		background-color: var(--gray-999);
 		border-bottom: 1px solid var(--gray-800);
 	}
@@ -260,7 +255,7 @@ const iconLinks: { label: string; href: string; icon: IconProps['icon'] }[] = [
 		.nav-items {
 			position: relative;
 			flex-direction: row;
-			font-size: var(--text-sm);
+			font-size: var(--text-md);
 			border-radius: 999rem;
 			border: 0;
 			padding: 0.5rem 0.5625rem;

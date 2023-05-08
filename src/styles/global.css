@@ -16,13 +16,12 @@
 	--gray-999_40: hsla(var(--gray-999-basis), 0.4);
 	--gray-999: #ffffff;
 
-	--accent-light: #c561f6;
-	--accent-regular: #7611a6;
-	--accent-dark: #1c0056;
-	--accent-overlay: hsla(280, 89%, 67%, 0.33);
+	--accent-light: #909090;
+	--accent-regular: #5d5d5d;
+	--accent-dark: #3c3c3c;
+	--accent-overlay: hsla(0, 0%, 30%, 0.33);
 	--accent-subtle-overlay: var(--accent-overlay);
 	--accent-text-over: var(--gray-999);
-
 	--link-color: var(--accent-regular);
 
 	/* Gradients */
@@ -36,9 +35,9 @@
 		var(--gradient-stop-2),
 		var(--gradient-stop-3)
 	);
-	--gradient-accent-orange: linear-gradient(
+	--gradient-accent-green: linear-gradient(
 		150deg,
-		#ca7879,
+		#107a57,
 		var(--accent-regular),
 		var(--accent-dark)
 	);
@@ -56,7 +55,7 @@
 	--text-sm: 0.875rem;
 	--text-base: 1rem;
 	--text-md: 1.125rem;
-	--text-lg: 1.25rem;
+	--text-lg: 1.5rem;
 	--text-xl: 1.625rem;
 	--text-2xl: 2.125rem;
 	--text-3xl: 2.625rem;
@@ -64,10 +63,10 @@
 	--text-5xl: 4.5rem;
 
 	/* Fonts */
-	--font-system: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+	--font-system: "Goudy Bookletter 1911", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
 		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-	--font-body: 'Public Sans', var(--font-system);
-	--font-brand: Rubik, var(--font-system);
+	--font-body: "Hina Mincho", var(--font-system);
+	--font-brand: "Hina Mincho", var(--font-system);
 
 	/* Transitions */
 	--theme-transition: 0.2s ease-in-out;
@@ -88,20 +87,20 @@
 	--gray-999-basis: 225, 31%, 5%;
 	--gray-999: #090b11;
 
-	--accent-light: #1c0056;
-	--accent-regular: #7611a6;
-	--accent-dark: #c561f6;
-	--accent-overlay: hsla(280, 89%, 67%, 0.33);
-	--accent-subtle-overlay: hsla(281, 81%, 36%, 0.33);
+	--accent-light: #215600;
+	--accent-regular: #194001;
+	--accent-dark: #183e00;
+	--accent-overlay: hsla(123, 89%, 67%, 0.33);
+	--accent-subtle-overlay: hsla(151, 81%, 36%, 0.33);
 	--accent-text-over: var(--gray-0);
 
 	--link-color: var(--accent-dark);
 
-	--gradient-stop-1: #4c11c6;
+	--gradient-stop-1: #118752;
 	--gradient-subtle: linear-gradient(150deg, var(--gray-900) 19%, var(--gray-999) 81%);
-	--gradient-accent-orange: linear-gradient(
+	--gradient-accent-green: linear-gradient(
 		150deg,
-		#ca7879,
+		#13743d,
 		var(--accent-regular),
 		var(--accent-light)
 	);

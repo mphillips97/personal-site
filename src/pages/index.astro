@@ -15,11 +15,36 @@ import PortfolioPreview from '../components/PortfolioPreview.astro';
 // Page section components
 import ContactCTA from '../components/ContactCTA.astro';
 import Skills from '../components/Skills.astro';
+import { contentfulClient } from '../lib/contentful';
+import Portfolio from '../components/Portfolio.astro';
 
 // Content Fetching: List four most recent work projects
 const projects = (await getCollection('work'))
 	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
 	.slice(0, 4);
+
+export interface PurposeTagFields {
+	title: string,
+	icon: string,
+}
+
+export interface PurposeTag {
+	fields: PurposeTagFields;
+}
+
+export interface IntroHero {
+    name: string,
+	description: string,
+	image: any,
+	purposeTags: PurposeTag[],
+}
+
+const introHeroes = await contentfulClient.getEntries<IntroHero>({
+  content_type: "introHero",
+});
+const introHero = introHeroes.items[0];
+const imageSrc = introHero?.fields.image.fields?.file?.url;
+const purposeTags = introHero?.fields.purposeTags;
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
@@ -30,79 +55,30 @@ const projects = (await getCollection('work'))
 		<div class="wrapper stack gap-8 lg:gap-20">
 			<header class="hero">
 				<Hero
-					title="Hello, my name is Jeanine White"
-					tagline="I am a Creative Developer who is currently based in Portland, Oregon."
+					title={introHero?.fields.name}
+					tagline={introHero?.fields.description}
 					align="start"
 				>
 					<div class="roles">
-						<Pill><Icon icon="code" size="1.33em" /> Developer</Pill>
-						<Pill><Icon icon="microphone-stage" size="1.33em" /> Speaker</Pill>
-						<Pill><Icon icon="pencil-line" size="1.33em" /> Writer</Pill>
+						{
+							purposeTags?.map((tag) => (
+								<Pill><Icon icon={tag?.fields.icon} size="1.33em" />{tag?.fields?.title}</Pill>
+							))
+						}
 					</div>
 				</Hero>
-
 				<img
-					alt="Jeanine White smiling in a red plaid shirt and tortoise shell glasses"
+					alt="Matt Phillips picture"
 					width="480"
 					height="620"
-					src="/assets/portrait.jpg"
+					src={imageSrc}
 				/>
 			</header>
-
-			<Skills />
 		</div>
 
 		<main class="wrapper stack gap-20 lg:gap-48">
-			<section class="section with-background with-cta">
-				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Selected Work</h3>
-					<p>Take a look below at some of my featured work for clients from the past few years.</p>
-				</header>
-
-				<div class="gallery">
-					<Grid variant="offset">
-						{
-							projects.map((project) => (
-								<li>
-									<PortfolioPreview project={project} />
-								</li>
-							))
-						}
-					</Grid>
-				</div>
-
-				<div class="cta">
-					<CallToAction href="/work/">
-						View All
-						<Icon icon="arrow-right" size="1.2em" />
-					</CallToAction>
-				</div>
-			</section>
-
-			<section class="section with-background bg-variant">
-				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Mentions</h3>
-					<p>
-						I have been fortunate enough to recieve praise for my work in several publications. Take
-						a look below to learn more.
-					</p>
-				</header>
-
-				<div class="gallery">
-					<Grid variant="small">
-						{
-							['Medium', 'BuzzFeed', 'The Next Web', 'awwwards.', 'TechCrunch'].map((brand) => (
-								<li class="mention-card">
-									<p>{brand}</p>
-								</li>
-							))
-						}
-					</Grid>
-				</div>
-			</section>
+			<Portfolio />
 		</main>
-
-		<ContactCTA />
 	</div>
 </BaseLayout>
 
@@ -122,7 +98,6 @@ const projects = (await getCollection('work'))
 		aspect-ratio: 5 / 4;
 		object-fit: cover;
 		object-position: top;
-		border-radius: 1.5rem;
 		box-shadow: var(--shadow-md);
 	}
 
@@ -142,7 +117,6 @@ const projects = (await getCollection('work'))
 
 		.hero img {
 			aspect-ratio: 3 / 4;
-			border-radius: 4.5rem;
 			object-fit: cover;
 		}
 	}

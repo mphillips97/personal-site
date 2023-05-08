@@ -1,0 +1,49 @@
+---
+import { contentfulClient } from "../lib/contentful";
+import ContactCTA from "./ContactCTA.astro";
+import Grid from "./Grid.astro";
+import Hero from "./Hero.astro";
+import PortfolioPreview from "./PortfolioPreview.astro";
+
+
+export interface PurposeCard {
+    title: string,
+    image: any,
+}
+
+export interface PageHeader {
+    title: string,
+    description: string,
+}
+
+const purposeCards = await contentfulClient.getEntries<PurposeCard>({
+  content_type: "purposeCard",
+});
+
+const pageHeaders = await contentfulClient.getEntries<PageHeader>({
+  content_type: "pageHeader",
+  tags: ["purposes"],
+});
+const pageHeader = pageHeaders?.items[0];
+
+---
+
+<div class="stack gap-20">
+    <main class="wrapper stack gap-8">
+        <Hero
+            title={pageHeader?.fields.title}
+            tagline={pageHeader?.fields.description}
+            align="start"
+        />
+        <Grid variant="offset">
+            {
+                purposeCards.items.map((purposeCard) => (
+                    <li>
+                        <PortfolioPreview purposeCard={purposeCard.fields} />
+                    </li>
+                ))
+            }
+        </Grid>
+    </main>
+    <ContactCTA />
+</div>

@@ -7,6 +7,9 @@ import MainHead from '../components/MainHead.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 
+import "@fontsource/goudy-bookletter-1911";
+import "@fontsource/hina-mincho"
+
 interface Props {
 	title?: string | undefined;
 	description?: string | undefined;
@@ -94,9 +97,9 @@ const { title, description } = Astro.props;
 				background:
 					/*noise*/ url('/assets/backgrounds/noise.png') top center/220px repeat,
 					/*footer*/ var(--bg-image-footer) bottom center/var(--bg-gradient-size) no-repeat,
-					/*header1*/ var(--bg-image-main-curves) top center/var(--bg-gradient-size) no-repeat,
-					/*header2*/ var(--bg-image-main) top center/var(--bg-gradient-size) no-repeat,
-					/*base*/ var(--gray-999);
+					/*header1*/ url('/assets/backgrounds/tiles.jpg') top center repeat,
+					/*header2*/ url('/assets/backgrounds/tiles.jpg') top center repeat,
+					/*base*/ url('/assets/backgrounds/tiles.jpg') top center repeat;
 				background-blend-mode: /*noise*/ overlay, /*footer*/ var(--bg-blend-mode),
 					/*header1*/ var(--bg-svg-blend-mode), /*header2*/ normal, /*base*/ normal;
 			}
